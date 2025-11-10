@@ -11,8 +11,8 @@ const Home = () => {
     const fetchAllPokemon = async () => {
       const fetchedPokemon = await pokemonService.index();
       console.log(fetchedPokemon);
-      setPokemon(fetchedPokemon);
-      setDisplayedpokemon(fetchedPokemon);
+      setPokemon(fetchedPokemon.results);
+      setDisplayedpokemon(fetchedPokemon.results);
     };
     fetchAllPokemon();
   }, []);
@@ -20,8 +20,12 @@ const Home = () => {
   return (
     <>
       <div className="pokemon-list">
-        <h1>Welceome to the Pokedex Landing Page</h1>
-        
+        <h1>Welcome to the Pokedex Landing Page</h1>
+        <ul>
+          {pokemon.map((mon) => (
+            <li key={mon.name}>{mon.name}</li>
+          ))}
+        </ul>
       </div>
     </>
   );
